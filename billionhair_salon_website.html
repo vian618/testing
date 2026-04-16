@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billionhair Unisex Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --gold:#C9A84C;--dark:#0D0D0D;--cream:#FAF6EF;--text:#1a1a1a;--muted:#888;
+  }
+  body{font-family:'DM Sans',sans-serif;background:#0D0D0D;color:#FAF6EF;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(13,13,13,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:20px;letter-spacing:2px;color:#C9A84C;}
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,246,239,0.7);transition:color 0.2s;}
+  .nav-links a:hover{color:#C9A84C;}
+  .nav-cta{background:#C9A84C;color:#0D0D0D;border:none;padding:10px 24px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
+  .nav-cta:hover{opacity:0.85;}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 48px;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 70% 50%,rgba(201,168,76,0.08) 0%,transparent 70%);pointer-events:none;}
+  .hero-line{position:absolute;top:0;right:28%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.3) 30%,rgba(201,168,76,0.3) 70%,transparent);}
+  .hero-content{position:relative;z-index:2;max-width:580px;}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C9A84C;margin-bottom:28px;}
+  .hero-tag::before{content:'';display:block;width:32px;height:1px;background:#C9A84C;}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,88px);line-height:1.0;font-weight:900;margin-bottom:24px;}
+  h1 em{color:#C9A84C;font-style:italic;}
+  .hero-sub{font-size:16px;color:rgba(250,246,239,0.6);line-height:1.7;margin-bottom:40px;max-width:420px;}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{background:#C9A84C;color:#0D0D0D;border:none;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
+  .btn-primary:hover{opacity:0.85;}
+  .btn-outline{background:transparent;color:#FAF6EF;border:1px solid rgba(250,246,239,0.3);padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+  .btn-outline:hover{border-color:#C9A84C;color:#C9A84C;}
+  .hero-stats{position:absolute;right:48px;bottom:80px;display:flex;flex-direction:column;gap:32px;z-index:2;}
+  .stat{text-align:right;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#C9A84C;}
+  .stat-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,246,239,0.5);}
+  .rating-stars{color:#C9A84C;font-size:13px;}
+
+  /* MARQUEE */
+  .marquee-wrap{overflow:hidden;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);padding:14px 0;background:rgba(201,168,76,0.03);}
+  .marquee-track{display:flex;gap:0;animation:marquee 20s linear infinite;white-space:nowrap;}
+  .marquee-item{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,0.4);padding:0 32px;}
+  .marquee-dot{color:#C9A84C;}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* SECTION */
+  section{padding:100px 48px;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C9A84C;margin-bottom:20px;}
+  .section-tag::before{content:'';display:block;width:24px;height:1px;background:#C9A84C;}
+  h2{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.15;margin-bottom:16px;}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(201,168,76,0.1);margin-top:60px;}
+  .service-card{background:#0D0D0D;padding:40px 32px;transition:background 0.3s;cursor:pointer;}
+  .service-card:hover{background:#131313;}
+  .service-icon{font-size:28px;margin-bottom:20px;}
+  .service-name{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;}
+  .service-desc{font-size:13px;color:rgba(250,246,239,0.5);line-height:1.6;margin-bottom:16px;}
+  .service-price{font-size:12px;color:#C9A84C;letter-spacing:1px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .about-img-wrap{position:relative;}
+  .about-img-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#1a1a1a 0%,#222 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:80px;color:rgba(201,168,76,0.2);}
+  .about-accent{position:absolute;bottom:-20px;right:-20px;width:60%;height:60%;border:1px solid rgba(201,168,76,0.2);z-index:-1;}
+  .about-text p{color:rgba(250,246,239,0.6);line-height:1.8;margin-bottom:20px;font-size:15px;}
+  .about-features{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+  .feature{display:flex;align-items:flex-start;gap:16px;}
+  .feature-dot{width:6px;height:6px;border-radius:50%;background:#C9A84C;margin-top:7px;flex-shrink:0;}
+  .feature-text{font-size:14px;color:rgba(250,246,239,0.7);}
+
+  /* REVIEWS */
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:60px;}
+  .review-card{background:#111;border:1px solid rgba(201,168,76,0.1);padding:32px;transition:border-color 0.3s;}
+  .review-card:hover{border-color:rgba(201,168,76,0.3);}
+  .review-stars{color:#C9A84C;font-size:12px;margin-bottom:16px;letter-spacing:2px;}
+  .review-text{font-size:14px;color:rgba(250,246,239,0.65);line-height:1.7;margin-bottom:20px;font-style:italic;}
+  .review-author{font-size:13px;font-weight:500;color:#C9A84C;}
+  .review-date{font-size:11px;color:rgba(250,246,239,0.3);margin-top:2px;}
+
+  /* BOOKING */
+  .booking-section{background:#111;border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);}
+  .booking-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .booking-form{display:flex;flex-direction:column;gap:16px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;}
+  .form-group label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,246,239,0.5);}
+  .form-group input,.form-group select{background:#0D0D0D;border:1px solid rgba(201,168,76,0.2);color:#FAF6EF;padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
+  .form-group input:focus,.form-group select:focus{border-color:#C9A84C;}
+  .form-group select option{background:#0D0D0D;}
+
+  /* CONTACT */
+  .contact-strip{display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(201,168,76,0.15);}
+  .contact-item{flex:1;min-width:200px;padding:36px 32px;border-right:1px solid rgba(201,168,76,0.1);}
+  .contact-item:last-child{border-right:none;}
+  .contact-icon{width:36px;height:36px;border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:14px;}
+  .contact-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,246,239,0.4);margin-bottom:6px;}
+  .contact-val{font-size:14px;color:rgba(250,246,239,0.85);line-height:1.5;}
+
+  /* FOOTER */
+  footer{padding:40px 48px;border-top:1px solid rgba(201,168,76,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:2px;color:#C9A84C;}
+  .footer-copy{font-size:12px;color:rgba(250,246,239,0.3);}
+  .footer-social{display:flex;gap:16px;}
+  .social-link{width:32px;height:32px;border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(250,246,239,0.5);transition:all 0.2s;}
+  .social-link:hover{border-color:#C9A84C;color:#C9A84C;}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:32px;right:32px;background:#C9A84C;color:#0D0D0D;padding:14px 24px;font-size:13px;font-weight:500;transform:translateY(80px);opacity:0;transition:all 0.4s;z-index:999;}
+  .toast.show{transform:translateY(0);opacity:1;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BILLIONHAIR</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Borivali West · Mumbai</div>
+    <h1>Where Hair Meets <em>Art.</em></h1>
+    <p class="hero-sub">Premium unisex salon experience in the heart of Mumbai. Expert stylists, curated treatments, and an ambiance that transforms.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Appointment</button>
+      <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Our Services</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">4.2</div>
+      <div class="rating-stars">★★★★☆</div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1,121</div>
+      <div class="stat-label">Reviews</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">9+</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Balayage <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Keratin Treatment <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hair Botox <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hydra Facial <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hair Colour <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Aroma Therapy <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Haircut &amp; Styling <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Skin Treatments <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Balayage <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Keratin Treatment <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hair Botox <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hydra Facial <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hair Colour <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Aroma Therapy <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Haircut &amp; Styling <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Skin Treatments <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What We Offer</div>
+  <h2>Our Signature Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✂</div>
+      <div class="service-name">Haircut & Styling</div>
+      <div class="service-desc">Precision cuts tailored to your face shape, hair type, and personal style. For men and women.</div>
+      <div class="service-price">Starting ₹299</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <div class="service-name">Balayage & Colour</div>
+      <div class="service-desc">Sun-kissed balayage, full colour, highlights, and fashion shades by certified colourists.</div>
+      <div class="service-price">Starting ₹1,499</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <div class="service-name">Hair Botox</div>
+      <div class="service-desc">Deep conditioning treatment that restores vitality, eliminates frizz, and adds intense shine.</div>
+      <div class="service-price">Starting ₹2,999</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💆</div>
+      <div class="service-name">Hydra Facial</div>
+      <div class="service-desc">Advanced multi-step facial that cleanses, exfoliates, and hydrates for glowing skin.</div>
+      <div class="service-price">Starting ₹1,999</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <div class="service-name">Aroma Therapy</div>
+      <div class="service-desc">Relaxing aromatherapy treatments using premium essential oils for body and scalp.</div>
+      <div class="service-price">Starting ₹799</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💫</div>
+      <div class="service-name">Keratin Treatment</div>
+      <div class="service-desc">Smooth and straighten your hair with a long-lasting Brazilian keratin ritual.</div>
+      <div class="service-price">Starting ₹3,499</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#080808;">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-placeholder">✂</div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Our Story</div>
+      <h2>Mumbai's Premier Unisex Salon</h2>
+      <p>Nestled in the heart of Borivali West, Billionhair Unisex Salon has been crafting exceptional hair and beauty experiences for years. Our team of passionate stylists combines global techniques with an understanding of every client's unique needs.</p>
+      <p>From the moment you walk in, you're greeted with a warm ambiance, soothing aromas, and a team dedicated to making you look and feel extraordinary.</p>
+      <div class="about-features">
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text">Expert certified stylists with international training</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text">Hygienic, sanitised tools and premium product lines</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text">Welcoming unisex environment for all ages</div></div>
+        <div class="feature"><div class="feature-dot"></div><div class="feature-text">Personalised consultations before every service</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-tag">What Clients Say</div>
+  <h2>Loved by Mumbai</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"What a great experience — the staff was very professional in their approach, very hygienic and the ambiance was very soothing."</div>
+      <div class="review-author">Shalvi Raut</div>
+      <div class="review-date">Verified Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"The place, the music, the aroma therapy — it made it a truly wonderful experience for me. Will definitely come back."</div>
+      <div class="review-author">Google Reviewer</div>
+      <div class="review-date">Verified Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Ankita was really lovely — great service, well-spoken staff, loved the haircut. Highly recommended to all."</div>
+      <div class="review-author">Google Reviewer</div>
+      <div class="review-date">Verified Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Very friendly workers, great ambience with super hygienic equipment. One of the best salons I've visited in Mumbai."</div>
+      <div class="review-author">Google Reviewer</div>
+      <div class="review-date">Verified Google Review</div>
+    </div>
+  </div>
+  <div style="margin-top:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+    <div style="font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#C9A84C;line-height:1;">4.2</div>
+    <div>
+      <div style="color:#C9A84C;font-size:20px;letter-spacing:3px;margin-bottom:4px;">★★★★☆</div>
+      <div style="font-size:13px;color:rgba(250,246,239,0.5);">Based on 1,121 Google Reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking-section">
+  <div class="booking-inner">
+    <div>
+      <div class="section-tag">Easy Booking</div>
+      <h2>Reserve Your Appointment</h2>
+      <p style="color:rgba(250,246,239,0.55);line-height:1.7;margin-top:16px;font-size:15px;">Walk-ins welcome. For guaranteed slots and priority service, book ahead. We'll confirm your appointment within 30 minutes.</p>
+      <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(250,246,239,0.6);">
+          <div style="width:24px;height:24px;border:1px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-size:11px;color:#C9A84C;">1</div>
+          Choose your service
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(250,246,239,0.6);">
+          <div style="width:24px;height:24px;border:1px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-size:11px;color:#C9A84C;">2</div>
+          Pick a date and time
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(250,246,239,0.6);">
+          <div style="width:24px;height:24px;border:1px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-size:11px;color:#C9A84C;">3</div>
+          We confirm — you arrive and glow
+        </div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Priya" id="fname">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Sharma">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 98765 43210">
+      </div>
+      <div class="form-group">
+        <label>Service</label>
+        <select>
+          <option value="">Select a service</option>
+          <option>Haircut &amp; Styling</option>
+          <option>Balayage</option>
+          <option>Hair Colour</option>
+          <option>Hair Botox</option>
+          <option>Keratin Treatment</option>
+          <option>Hydra Facial</option>
+          <option>Aroma Therapy</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Time</label>
+          <select>
+            <option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option>
+            <option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+            <option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option>
+            <option>7:00 PM</option><option>8:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" style="margin-top:8px;" onclick="handleBook()">Confirm Booking</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:60px;padding-bottom:0;">
+  <div class="section-tag">Find Us</div>
+  <h2 style="margin-bottom:40px;">Visit The Salon</h2>
+  <div class="contact-strip">
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div class="contact-label">Address</div>
+      <div class="contact-val">Shop No. 2, Dharmakshetra, Factory Lane,<br>Near Ambe Mata Temple, Gautam Nagar,<br>Borivali West, Mumbai 400092</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div class="contact-label">Hours</div>
+      <div class="contact-val">Monday – Sunday<br>10:00 AM – 9:30 PM<br><span style="color:#C9A84C;font-size:12px;">Open Today</span></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📸</div>
+      <div class="contact-label">Instagram</div>
+      <div class="contact-val"><a href="https://instagram.com" style="color:#C9A84C;text-decoration:none;">@billionhairsalon</a><br><span style="font-size:12px;color:rgba(250,246,239,0.4);">Follow for looks &amp; offers</span></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">⭐</div>
+      <div class="contact-label">Reviews</div>
+      <div class="contact-val">4.2 / 5 on Google<br><a href="https://maps.google.com" style="color:#C9A84C;text-decoration:none;font-size:12px;">Leave a Review →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BILLIONHAIR</div>
+  <div class="footer-copy">© 2025 Billionhair Unisex Salon · Borivali West, Mumbai</div>
+  <div class="footer-social">
+    <a class="social-link" href="https://instagram.com">ig</a>
+    <a class="social-link" href="https://maps.google.com">gm</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Booking request sent! We'll confirm shortly.</div>
+
+<script>
+function handleBook(){
+  var fname=document.getElementById('fname').value;
+  var t=document.getElementById('toast');
+  t.textContent=fname?'Thanks '+fname+'! We\'ll confirm your booking shortly.':'Booking request sent! We\'ll confirm shortly.';
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3500);
+}
+</script>
+</body>
+</html>
